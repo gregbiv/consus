@@ -61,6 +61,11 @@ func commands(conf *config.Specification) map[string]cli.CommandFactory {
 				Meta: meta,
 			}, nil
 		},
+		"migrate": func() (cli.Command, error) {
+			return &command.MigrateCommand{
+				Meta: meta,
+			}, nil
+		},
 	}
 
 	return cf
