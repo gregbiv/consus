@@ -7,6 +7,7 @@ import (
 
 	"github.com/go-chi/chi"
 	chiMiddleware "github.com/go-chi/chi/middleware"
+	"github.com/gregbiv/sandbox/pkg/api"
 	"github.com/gregbiv/sandbox/pkg/api/docs"
 	"github.com/pressly/lg"
 	"github.com/sirupsen/logrus"
@@ -34,6 +35,9 @@ func (c *HTTPCommand) Run(args []string) int {
 		chiMiddleware.Recoverer,
 		lg.RequestLogger(logrus.StandardLogger()),
 	)
+
+	// 404
+	router.NotFound(api.NotFound)
 
 	// HelloWorld
 	router.Route("/", func(r chi.Router) {
