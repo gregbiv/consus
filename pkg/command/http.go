@@ -7,6 +7,7 @@ import (
 
 	"github.com/go-chi/chi"
 	chiMiddleware "github.com/go-chi/chi/middleware"
+	"github.com/gregbiv/sandbox/pkg/api/docs"
 	"github.com/pressly/lg"
 	"github.com/sirupsen/logrus"
 	log "github.com/sirupsen/logrus"
@@ -40,6 +41,9 @@ func (c *HTTPCommand) Run(args []string) int {
 			writer.Write([]byte("Sandbox API"))
 		})
 	})
+
+	// Documentation
+	docs.DocServer(router, docs.DocsPATH, http.Dir(docs.DocsDIR))
 
 	log.Fatal(http.ListenAndServe(fmt.Sprintf(":%d", c.Config.Port), router))
 
