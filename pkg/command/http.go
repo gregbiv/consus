@@ -9,6 +9,8 @@ import (
 	chiMiddleware "github.com/go-chi/chi/middleware"
 	"github.com/gregbiv/sandbox/pkg/api"
 	"github.com/gregbiv/sandbox/pkg/api/docs"
+	"github.com/gregbiv/sandbox/pkg/routes"
+	"github.com/jmoiron/sqlx"
 	"github.com/pressly/lg"
 	"github.com/sirupsen/logrus"
 	log "github.com/sirupsen/logrus"
@@ -25,6 +27,12 @@ func (c *HTTPCommand) Run(args []string) int {
 	flags.Usage = func() { c.UI.Output(c.Help()) }
 	if err := flags.Parse(args); err != nil {
 		return 1
+	}
+
+	// Setup handler dependencies
+	db, err := sqlx.Open("postgres", c.Config.Database.PostgresDB.DSN)
+	if err != nil {
+		log.Fatalf("Postgres Connection failed: %+v", err)
 	}
 
 	router := chi.NewRouter()
@@ -48,6 +56,11 @@ func (c *HTTPCommand) Run(args []string) int {
 
 	// Documentation
 	docs.DocServer(router, docs.DocsPATH, http.Dir(docs.DocsDIR))
+
+	// Version 1
+	router.Route("/v1", func(r chi.Router) {
+		r.Route("/keys", routes.RouteKeys(db))
+	})
 
 	log.Fatal(http.ListenAndServe(fmt.Sprintf(":%d", c.Config.Port), router))
 
