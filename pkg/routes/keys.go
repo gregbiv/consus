@@ -15,6 +15,7 @@ func RouteKeys(urlExtractor api.URLExtractor, db *sqlx.DB) func(r chi.Router) {
 
 	return func(r chi.Router) {
 		r.Get("/", keys.NewGetKeysHandler(getter).ServeHTTP)
+		r.Delete("/", keys.NewDiscardKeysHandler(discarder).ServeHTTP)
 
 		r.Route("/{id}", func(r chi.Router) {
 			r.Get("/", keys.NewGetKeyHandler(urlExtractor, getter).ServeHTTP)

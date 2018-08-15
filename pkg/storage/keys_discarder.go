@@ -36,6 +36,24 @@ func (dd *dbDiscarder) Discard(ID string) error {
 	return nil
 }
 
+func (dd *dbDiscarder) Truncate() error {
+	tx, err := dd.db.Beginx()
+	if err != nil {
+		return err
+	}
+
+	_, err = tx.Exec(`TRUNCATE keys CASCADE `)
+	if err != nil {
+		return err
+	}
+
+	if err := tx.Commit(); err != nil {
+		log.Panic(stacktrace.Propagate(err, "Failed to commit truncate transaction", err))
+	}
+
+	return nil
+}
+
 func discardKey(tx *sqlx.Tx, ID string) error {
 	query := `
         DELETE FROM keys

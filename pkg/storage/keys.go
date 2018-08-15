@@ -24,5 +24,7 @@ type (
 	Discarder interface {
 		// Discard removes entry from database
 		Discard(ID string) error
+		// Truncate removes everything from database
+		Truncate() error
 	}
 )
