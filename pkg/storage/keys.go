@@ -27,4 +27,16 @@ type (
 		// Truncate removes everything from database
 		Truncate() error
 	}
+
+	// Storer is responsible for storing keys
+	Storer interface {
+		// Store stores a key in database
+		Store(key *model.Key) error
+	}
+
+	// Updater is responsible for updating keys
+	Updater interface {
+		// Update updates a key in database
+		Update(key *model.Key) error
+	}
 )

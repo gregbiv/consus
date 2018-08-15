@@ -11,10 +11,13 @@ import (
 func RouteKeys(db *sqlx.DB) func(r chi.Router) {
 	getter := storage.NewGetter(db)
 	discarder := storage.NewDiscarder(db)
+	storer := storage.NewStorer(db)
+	updater := storage.NewUpdater(db)
 
 	return func(r chi.Router) {
 		r.Get("/", keys.NewGetKeysHandler(getter).ServeHTTP)
 		r.Delete("/", keys.NewDiscardKeysHandler(discarder).ServeHTTP)
+		r.Put("/", keys.NewPutKeyHandler(storer, updater, getter).ServeHTTP)
 
 		r.Route("/{id}", func(r chi.Router) {
 			r.Get("/", keys.NewGetKeyHandler(getter).ServeHTTP)
