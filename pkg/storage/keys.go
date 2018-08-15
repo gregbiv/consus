@@ -15,9 +15,9 @@ type (
 	// Getter is responsible for SELECTing keys
 	Getter interface {
 		// GetAll gets all keys
-		GetAll() ([]*model.Key, error)
+		GetAll(activeOnly bool) ([]*model.Key, error)
 		// GetByID gets a key by ID
-		GetByID(ID string) (*model.Key, error)
+		GetByID(ID string, activeOnly bool) (*model.Key, error)
 	}
 
 	// Discarder is responsible for DELETing keys

@@ -16,7 +16,7 @@ func NewGetter(db *sqlx.DB) Getter {
 	return &dbGetter{db: db}
 }
 
-func (dg *dbGetter) GetAll() ([]*model.Key, error) {
+func (dg *dbGetter) GetAll(activeOnly bool) ([]*model.Key, error) {
 	var list []*model.Key
 	var err error
 
@@ -29,6 +29,10 @@ func (dg *dbGetter) GetAll() ([]*model.Key, error) {
 			expires_at
 		FROM keys
 	`
+
+	if activeOnly {
+		query += ` WHERE NOT expires_at < NOW() OR expires_at IS NULL`
+	}
 
 	err = dg.db.Select(&list, query)
 
@@ -43,7 +47,7 @@ func (dg *dbGetter) GetAll() ([]*model.Key, error) {
 	return list, nil
 }
 
-func (dg *dbGetter) GetByID(ID string) (*model.Key, error) {
+func (dg *dbGetter) GetByID(ID string, activeOnly bool) (*model.Key, error) {
 	var key model.Key
 	var err error
 
@@ -57,6 +61,10 @@ func (dg *dbGetter) GetByID(ID string) (*model.Key, error) {
 		FROM keys
 		WHERE id = $1
 	`
+
+	if activeOnly {
+		query += ` AND NOT expires_at < NOW() OR expires_at IS NULL`
+	}
 
 	err = dg.db.Get(&key, query, ID)
 

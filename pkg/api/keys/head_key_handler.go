@@ -25,7 +25,7 @@ func NewHeadKeyHandler(keyGetter storage.Getter) http.Handler {
 func (h *headKeyHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	ID := chi.URLParam(r, "id")
 
-	_, err := h.keyGetter.GetByID(ID)
+	_, err := h.keyGetter.GetByID(ID, true)
 	if err != nil {
 		if err == storage.ErrKeyNotFound {
 			api.NotFound(w, r)

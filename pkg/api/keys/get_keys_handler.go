@@ -27,7 +27,7 @@ func NewGetKeysHandler(KeyGetter storage.Getter) http.Handler {
 
 func (h *getKeysHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	// fetching all keys
-	dbKeys, err := h.keyGetter.GetAll()
+	dbKeys, err := h.keyGetter.GetAll(true)
 	if err != nil {
 		api.RenderInternalServerError(w, r, err)
 		return

@@ -62,7 +62,7 @@ func (h *putKeyHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	dbKey, err := h.keyGetter.GetByID(modelKey.KeyID)
+	dbKey, err := h.keyGetter.GetByID(modelKey.KeyID, false)
 	if err != nil {
 		if err != storage.ErrKeyNotFound {
 			api.RenderInternalServerError(w, r, err)
