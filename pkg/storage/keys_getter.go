@@ -42,3 +42,31 @@ func (dg *dbGetter) GetAll() ([]*model.Key, error) {
 
 	return list, nil
 }
+
+func (dg *dbGetter) GetByID(ID string) (*model.Key, error) {
+	var key model.Key
+	var err error
+
+	query := `
+		SELECT
+			id, 
+			value,
+			created_at, 
+			updated_at, 
+			expires_at
+		FROM keys
+		WHERE id = $1
+	`
+
+	err = dg.db.Get(&key, query, ID)
+
+	if err != nil {
+		if err == sql.ErrNoRows {
+			return nil, ErrKeyNotFound
+		}
+
+		return nil, err
+	}
+
+	return &key, nil
+}
