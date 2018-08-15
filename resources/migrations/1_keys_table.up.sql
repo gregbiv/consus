@@ -2,9 +2,9 @@
 -- Keys Table
 CREATE TABLE keys (
     id VARCHAR(50) PRIMARY KEY NOT NULL,
-    value text NOT NULL,
+    value text DEFAULT NULL,
 
-    created_at timestamp default current_timestamp,
-    updated_at timestamp default null,
-    expires_at timestamp default null
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT NULL,
+    expires_at TIMESTAMP DEFAULT NULL
 );

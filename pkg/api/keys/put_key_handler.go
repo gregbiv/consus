@@ -58,7 +58,7 @@ func (h *putKeyHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 
 	modelKey, err := keyAPI.toModel()
 	if err != nil {
-		api.RenderInvalidInput(w, r, "value", err.Error())
+		api.RenderInvalidInput(w, r, "id", err.Error())
 		return
 	}
 
@@ -69,7 +69,7 @@ func (h *putKeyHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 			return
 		}
 
-		if err := h.keyStorer.Store(modelKey); err != nil {
+		if err := h.keyStorer.Store(&modelKey); err != nil {
 			api.RenderInternalServerError(w, r, err)
 			return
 		}

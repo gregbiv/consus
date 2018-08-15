@@ -5,15 +5,22 @@ import (
 	"errors"
 	"io/ioutil"
 	"net/http"
+	"regexp"
 	"time"
 
-	"github.com/lib/pq"
-
 	"github.com/gregbiv/sandbox/pkg/model"
+	"github.com/lib/pq"
 )
 
-// ErrInvalidBody represents the error when the request body is invalid.
-var ErrInvalidBody = errors.New("invalid request body provided")
+// basic regular expression for validating strings
+const Alpha = "^[a-zA-Z]+$"
+
+var (
+	// ErrInvalidBody represents the error when the request body is invalid.
+	ErrInvalidBody = errors.New("invalid request body provided")
+	// ErrInvalidKey represents the error when the provided key is invalid
+	ErrInvalidKeyID = errors.New("invalid id provided, value should contain only letters")
+)
 
 // key describes an API model
 type key struct {
@@ -40,11 +47,10 @@ func (k *key) fromDB(dbKey *model.Key) {
 	}
 }
 
-func (k *key) toModel() (modelKey *model.Key, err error) {
-	modelKey = &model.Key{}
-
-	if k.Value == "" || k.KeyID == "" {
-		return nil, ErrInvalidBody
+func (k *key) toModel() (modelKey model.Key, err error) {
+	// validating key ID
+	if !regexp.MustCompile(Alpha).MatchString(k.KeyID) {
+		return modelKey, ErrInvalidKeyID
 	}
 
 	if k.ExpiresAt != nil {
