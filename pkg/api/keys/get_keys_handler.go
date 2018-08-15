@@ -36,11 +36,7 @@ func (h *getKeysHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	list := []key{}
 	for _, dbKey := range dbKeys {
 		keyAPI := key{}
-		err = keyAPI.fromDB(dbKey)
-		if err != nil {
-			api.RenderInternalServerError(w, r, err)
-			return
-		}
+		keyAPI.fromDB(dbKey)
 
 		list = append(list, keyAPI)
 	}

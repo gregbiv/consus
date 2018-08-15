@@ -4,25 +4,19 @@ import (
 	"time"
 
 	"github.com/gregbiv/sandbox/pkg/model"
-	"github.com/satori/go.uuid"
 )
 
 // key describes an API model
 type key struct {
-	KeyID     *uuid.UUID `json:"key_id"`
+	KeyID     string     `json:"id"`
 	Value     string     `json:"value"`
 	CreatedAt time.Time  `json:"created_at"`
 	UpdatedAt *time.Time `json:"updated_at"`
 	ExpiresAt *time.Time `json:"expires_at"`
 }
 
-func (s *key) fromDB(dbKey *model.Key) error {
-	id, err := uuid.FromString(dbKey.KeyID)
-	if err != nil {
-		return err
-	}
-
-	s.KeyID = &id
+func (s *key) fromDB(dbKey *model.Key) {
+	s.KeyID = dbKey.KeyID
 	s.CreatedAt = dbKey.CreatedAt
 	s.Value = dbKey.Value
 
@@ -35,6 +29,4 @@ func (s *key) fromDB(dbKey *model.Key) error {
 		expiresAt := dbKey.ExpiresAt.Time
 		s.ExpiresAt = &expiresAt
 	}
-
-	return nil
 }

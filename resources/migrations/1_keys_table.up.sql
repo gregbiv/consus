@@ -1,7 +1,7 @@
 
 -- Keys Table
 CREATE TABLE keys (
-    id UUID PRIMARY KEY NOT NULL,
+    id VARCHAR(50) PRIMARY KEY NOT NULL,
     value text NOT NULL,
 
     created_at timestamp default current_timestamp,

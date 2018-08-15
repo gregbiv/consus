@@ -36,8 +36,6 @@ func (c *HTTPCommand) Run(args []string) int {
 	}
 
 	router := chi.NewRouter()
-	// URL extractor
-	urlExtractor := api.NewURLExtractor()
 
 	// A good base middleware stack
 	router.Use(
@@ -61,7 +59,7 @@ func (c *HTTPCommand) Run(args []string) int {
 
 	// Version 1
 	router.Route("/v1", func(r chi.Router) {
-		r.Route("/keys", routes.RouteKeys(urlExtractor, db))
+		r.Route("/keys", routes.RouteKeys(db))
 	})
 
 	log.Fatal(http.ListenAndServe(fmt.Sprintf(":%d", c.Config.Port), router))

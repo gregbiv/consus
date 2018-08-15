@@ -3,6 +3,7 @@ package keys
 import (
 	"net/http"
 
+	"github.com/go-chi/chi"
 	"github.com/go-chi/render"
 	"github.com/gregbiv/sandbox/pkg/api"
 	"github.com/gregbiv/sandbox/pkg/storage"
@@ -10,27 +11,21 @@ import (
 
 type (
 	headKeyHandler struct {
-		urlExtractor api.URLExtractor
-		keyGetter    storage.Getter
+		keyGetter storage.Getter
 	}
 )
 
 // NewHeadKeyHandler init and returns an instance of headKeyHandler
-func NewHeadKeyHandler(urlExtractor api.URLExtractor, keyGetter storage.Getter) http.Handler {
+func NewHeadKeyHandler(keyGetter storage.Getter) http.Handler {
 	return &headKeyHandler{
-		urlExtractor: urlExtractor,
-		keyGetter:    keyGetter,
+		keyGetter: keyGetter,
 	}
 }
 
 func (h *headKeyHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
-	ID, err := h.urlExtractor.UUIDFromRoute(r, "id")
-	if err != nil {
-		api.NotFound(w, r)
-		return
-	}
+	ID := chi.URLParam(r, "id")
 
-	_, err = h.keyGetter.GetByID(ID.String())
+	_, err := h.keyGetter.GetByID(ID)
 	if err != nil {
 		if err == storage.ErrKeyNotFound {
 			api.NotFound(w, r)
