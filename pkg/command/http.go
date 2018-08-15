@@ -12,6 +12,7 @@ import (
 	"github.com/gregbiv/sandbox/pkg/routes"
 	"github.com/jmoiron/sqlx"
 	"github.com/pressly/lg"
+	"github.com/prometheus/client_golang/prometheus/promhttp"
 	"github.com/sirupsen/logrus"
 	log "github.com/sirupsen/logrus"
 )
@@ -56,6 +57,9 @@ func (c *HTTPCommand) Run(args []string) int {
 
 	// Documentation
 	docs.DocServer(router, docs.DocsPATH, http.Dir(docs.DocsDIR))
+
+	// Metrics
+	router.Get("/metrics", promhttp.Handler().ServeHTTP)
 
 	// Version 1
 	router.Route("/v1", func(r chi.Router) {

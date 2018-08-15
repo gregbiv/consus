@@ -6,8 +6,14 @@ import (
 	"github.com/gregbiv/sandbox/pkg/command"
 	"github.com/gregbiv/sandbox/pkg/config"
 	"github.com/mitchellh/cli"
+	"github.com/prometheus/client_golang/prometheus"
+	"github.com/prometheus/common/version"
 	log "github.com/sirupsen/logrus"
 )
+
+func init() {
+	prometheus.MustRegister(version.NewCollector("service"))
+}
 
 func main() {
 	log.SetFormatter(&log.JSONFormatter{FieldMap: log.FieldMap{
