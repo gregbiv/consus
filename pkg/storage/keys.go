@@ -19,4 +19,10 @@ type (
 		// GetByID gets a key by ID
 		GetByID(ID string) (*model.Key, error)
 	}
+
+	// Discarder is responsible for DELETing keys
+	Discarder interface {
+		// Discard removes entry from database
+		Discard(ID string) error
+	}
 )
