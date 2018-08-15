@@ -15,7 +15,7 @@ type (
 	// Getter is responsible for SELECTing keys
 	Getter interface {
 		// GetAll gets all keys
-		GetAll(activeOnly bool) ([]*model.Key, error)
+		GetAll(filterStr string, activeOnly bool) ([]*model.Key, error)
 		// GetByID gets a key by ID
 		GetByID(ID string, activeOnly bool) (*model.Key, error)
 	}

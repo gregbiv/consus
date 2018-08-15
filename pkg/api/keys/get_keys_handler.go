@@ -26,8 +26,11 @@ func NewGetKeysHandler(KeyGetter storage.Getter) http.Handler {
 }
 
 func (h *getKeysHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
+	// getting filter parameter
+	filterStr := r.URL.Query().Get("filter")
+
 	// fetching all keys
-	dbKeys, err := h.keyGetter.GetAll(true)
+	dbKeys, err := h.keyGetter.GetAll(filterStr, true)
 	if err != nil {
 		api.RenderInternalServerError(w, r, err)
 		return

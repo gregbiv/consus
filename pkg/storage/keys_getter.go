@@ -2,6 +2,8 @@ package storage
 
 import (
 	"database/sql"
+	"fmt"
+	"strings"
 
 	"github.com/gregbiv/sandbox/pkg/model"
 	"github.com/jmoiron/sqlx"
@@ -16,7 +18,7 @@ func NewGetter(db *sqlx.DB) Getter {
 	return &dbGetter{db: db}
 }
 
-func (dg *dbGetter) GetAll(activeOnly bool) ([]*model.Key, error) {
+func (dg *dbGetter) GetAll(filterStr string, activeOnly bool) ([]*model.Key, error) {
 	var list []*model.Key
 	var err error
 
@@ -31,7 +33,12 @@ func (dg *dbGetter) GetAll(activeOnly bool) ([]*model.Key, error) {
 	`
 
 	if activeOnly {
-		query += ` WHERE NOT expires_at < NOW() OR expires_at IS NULL`
+		query += ` WHERE (NOT expires_at < NOW() OR expires_at IS NULL)`
+	}
+
+	if filterStr != "" {
+		filterStr = strings.Replace(filterStr, "$", "%", -1)
+		query += fmt.Sprintf(" AND id LIKE '%%' || '%s' || '%%'", filterStr)
 	}
 
 	err = dg.db.Select(&list, query)
