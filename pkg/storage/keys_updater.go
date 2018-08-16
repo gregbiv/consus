@@ -69,7 +69,7 @@ func (du *dbKeyUpdater) updateKey(tx *sqlx.Tx, key *model.Key) (bool, error) {
 		named = append(named, fmt.Sprintf(":%s", key))
 	}
 
-	query := fmt.Sprintf(`UPDATE keys SET (%s) = (%s) WHERE id = :id`, strings.Join(keys, ", "), strings.Join(named, ", "))
+	query := fmt.Sprintf(`UPDATE keys SET (%s) = (%s) WHERE id = $1`, strings.Join(keys, ", "), strings.Join(named, ", "))
 	nstmt, err := tx.PrepareNamed(query)
 
 	if err != nil {

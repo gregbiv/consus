@@ -42,9 +42,9 @@ func (dd *dbDiscarder) Truncate() error {
 		return err
 	}
 
-	_, err = tx.Exec(`TRUNCATE keys CASCADE `)
+	_, err = tx.Exec(`TRUNCATE keys CASCADE`)
 	if err != nil {
-		return err
+		log.Panic(stacktrace.Propagate(err, "Failed to truncate", err))
 	}
 
 	if err := tx.Commit(); err != nil {

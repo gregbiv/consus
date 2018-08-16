@@ -59,18 +59,13 @@ func (dg *dbGetter) GetByID(ID string, activeOnly bool) (*model.Key, error) {
 	var err error
 
 	query := `
-		SELECT
-			id, 
-			value,
-			created_at, 
-			updated_at, 
-			expires_at
+		SELECT *
 		FROM keys
 		WHERE id = $1
 	`
 
 	if activeOnly {
-		query += ` AND NOT expires_at < NOW() OR expires_at IS NULL`
+		query += ` AND (NOT expires_at < NOW() OR expires_at IS NULL)`
 	}
 
 	err = dg.db.Get(&key, query, ID)

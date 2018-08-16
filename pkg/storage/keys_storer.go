@@ -39,6 +39,8 @@ func (m *dbKeyStorer) insertKey(tx *sqlx.Tx, key *model.Key) error {
 		"id":         key.KeyID,
 		"value":      key.Value,
 		"created_at": time.Now(),
+		"updated_at": nil,
+		"expires_at": nil,
 	}
 
 	keys := make([]string, 0, len(params))
