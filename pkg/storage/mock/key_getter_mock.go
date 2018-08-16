@@ -2,7 +2,7 @@ package mock
 
 import "github.com/gregbiv/sandbox/pkg/model"
 
-// Getter represents a subscription Getter mock
+// Getter represents a key Getter mock
 type Getter struct {
 	Key      *model.Key
 	KeyError error

@@ -46,7 +46,7 @@ func TestKeysUpdater(t *testing.T) {
 		ExpiresAt: expiresAt,
 	}
 
-	query := `^UPDATE keys SET  \(.*\) =  \(.*\) WHERE id = \$1`
+	query := `^UPDATE keys SET  \(.*\) =  \(.*\) WHERE id = \?`
 
 	t.Run("Updates a key", func(t *testing.T) {
 		// Arrange

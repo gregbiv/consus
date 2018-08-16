@@ -75,7 +75,7 @@ func TestDiscardKeyHandler_ServeHTTP_FailureDiscarder(t *testing.T) {
 	// Populate the request's context with our test data.
 	rctx := chi.NewRouteContext()
 
-	t.Run("Discarding a subscription key with error in DB", func(t *testing.T) {
+	t.Run("Discarding a key with error in DB", func(t *testing.T) {
 		testKeyID := "test-bla-bla"
 		rctx.URLParams.Add("id", testKeyID)
 

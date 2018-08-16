@@ -33,7 +33,7 @@ func TestDiscardKeysHandler_ServeHTTP_FailureDiscarder(t *testing.T) {
 	// creating handler
 	handler := NewDiscardKeysHandler(keyDiscarder)
 
-	t.Run("Discarding a subscription key with error in DB", func(t *testing.T) {
+	t.Run("Discarding a key with error in DB", func(t *testing.T) {
 		w := httptest.NewRecorder()
 		r := httptest.NewRequest("DELETE", "/keys", nil)
 
