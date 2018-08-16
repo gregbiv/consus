@@ -13,7 +13,7 @@ type (
 		keyGetter storage.Getter
 	}
 
-	ListResponse struct {
+	listResponse struct {
 		Items []key `json:"items"`
 	}
 )
@@ -44,7 +44,7 @@ func (h *getKeysHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 		list = append(list, keyAPI)
 	}
 
-	response := ListResponse{Items: list}
+	response := listResponse{Items: list}
 
 	render.Status(r, http.StatusOK)
 	render.JSON(w, r, response)
