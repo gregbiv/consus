@@ -1,0 +1,19 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "title": "PUT key request",
+    "type": "object",
+    "properties": {
+        "id": {
+            "type:": "string",
+            "minLength": 1,
+            "maxLength": 255
+        },
+        "value": {
+            "type:": "string"
+        }
+    },
+    "required": [
+        "id"
+    ],
+    "additionalProperties": false
+}

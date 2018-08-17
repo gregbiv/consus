@@ -1,0 +1,36 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "title": "GET key response",
+    "type": "object",
+    "properties": {
+        "id": {
+            "type:": "string",
+            "minLength": 1,
+            "maxLength": 255
+        },
+        "value": {
+            "type:": "string"
+        },
+        "created_at": {
+            "type": "string",
+            "format": "date"
+        },
+        "updated_at": {
+            "type": ["string", "null"],
+            "format": "date"
+        },
+        "expires_at": {
+            "type": ["string", "null"],
+            "format": "date"
+        },
+    },
+    "required": [
+        "id",
+        "value",
+        "created_at",
+        "updated_at",
+        "expires_at"
+    ],
+    "additionalProperties": false
+}
+

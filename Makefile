@@ -171,7 +171,7 @@ dev-run-http:
 # Dev with docker
 dev-docker-start:
 	@printf "$(OK_COLOR)==> Starting docker containers$(NO_COLOR)\n"
-	@docker-compose up -d
+	@docker-compose up -d --build
 
 dev-docker-stop:
 	@printf "$(OK_COLOR)==> Stopping docker containers$(NO_COLOR)\n"
