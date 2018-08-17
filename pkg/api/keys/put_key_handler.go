@@ -74,7 +74,8 @@ func (h *putKeyHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 			return
 		}
 
-		render.Status(r, http.StatusOK)
+		w.WriteHeader(http.StatusCreated)
+		render.Status(r, http.StatusCreated)
 		return
 	} else {
 		dbKey.Value = modelKey.Value
@@ -86,5 +87,5 @@ func (h *putKeyHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 		}
 	}
 
-	render.Status(r, http.StatusCreated)
+	render.Status(r, http.StatusOK)
 }

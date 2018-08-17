@@ -1,5 +1,5 @@
-hash: f0c4e25794f5d45d8cc331a7d1503f512496b427e4343a740ae727fd822168d4
-updated: 2018-08-16T08:51:59.125737638+02:00
+hash: e9be3a90fbfa52e3bb939e683a023a0e765c6c932a9cbed51164498755694062
+updated: 2018-08-17T17:33:45.904895675+02:00
 imports:
 - name: github.com/armon/go-radix
   version: 4239b77079c7b5d1243b7b4736304ce8ddb6f0f2
@@ -11,6 +11,8 @@ imports:
   version: 4aabc24848ce5fd31929f7d1e4ea74d3709c14cd
 - name: github.com/bluele/factory-go
   version: 14d56da9cb7cb33b02fe42a9566a03e51c8b3bef
+  subpackages:
+  - factory
 - name: github.com/DATA-DOG/godog
   version: 0371765570d36374bef4ab9f62ed0491f0862a3c
   subpackages:

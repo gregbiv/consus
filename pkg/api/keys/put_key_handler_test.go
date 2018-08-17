@@ -40,7 +40,7 @@ func TestPutKeyHandler_ServeHTTP(t *testing.T) {
 		r := httptest.NewRequest("PUT", "/keys", strings.NewReader(payload))
 
 		handler.ServeHTTP(w, r)
-		assert.Equal(t, http.StatusOK, w.Code)
+		assert.Equal(t, http.StatusCreated, w.Code)
 	})
 
 	t.Run("Creating a new key by providing the payload and expire_in", func(t *testing.T) {
@@ -54,7 +54,7 @@ func TestPutKeyHandler_ServeHTTP(t *testing.T) {
 		r := httptest.NewRequest("PUT", "/keys?expire_in=60", strings.NewReader(payload))
 
 		handler.ServeHTTP(w, r)
-		assert.Equal(t, http.StatusOK, w.Code)
+		assert.Equal(t, http.StatusCreated, w.Code)
 	})
 
 	t.Run("Creating a new key by providing the payload and invalid expire_in", func(t *testing.T) {

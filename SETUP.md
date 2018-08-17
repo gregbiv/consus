@@ -12,11 +12,15 @@ Consus - the key-value service.
 ## Or you can setup everything manually
 
 ```
+# Install vendor dependecies
+make deps
+```
+```
 # Build docker container
 make dev-docker-start
 ```
 ```
-# Create schema (ensure that postrgresql container is up and running)
+# Create schema (ensure postrgresql container is up and running)
 make dev-docker-migration
 ```
 ```
@@ -25,7 +29,7 @@ make build-docs
 ```
 ```
 # Run tests
-make dev-docker-test-unit
+make dev-docker-test-unit (ensure consus container is up and running)
 ```
 ```
 # Run integration tests

@@ -55,7 +55,7 @@ func RenderErrMissingURIParam(w http.ResponseWriter, r *http.Request, param stri
 
 // RenderInternalServerError is being called when there is an internal server error
 func RenderInternalServerError(w http.ResponseWriter, r *http.Request, err error) {
-	log.Warn(err)
+	log.Error(err)
 
 	render.Render(
 		w,
