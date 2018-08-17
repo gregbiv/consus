@@ -57,6 +57,8 @@ If it would be a real application, I would protect the API using [JWT](http://jw
 
 To optimize performance I would consider using some sort of caching strategies (maybe it's not really needed if values will be sorted for a short period).
 
+[[table of contents]](#table-of-contents)
+
 ## API Docs
 
 Documentation is in [RAML](https://raml.org) format.
