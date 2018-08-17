@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"strings"
 
-	"github.com/gregbiv/sandbox/pkg/model"
+	"github.com/gregbiv/consus/pkg/model"
 	"github.com/jmoiron/sqlx"
 )
 
@@ -23,12 +23,7 @@ func (dg *dbGetter) GetAll(filterStr string, activeOnly bool) ([]*model.Key, err
 	var err error
 
 	query := `
-		SELECT
-			id, 
-			value,
-			created_at, 
-			updated_at, 
-			expires_at
+		SELECT *
 		FROM keys
 	`
 

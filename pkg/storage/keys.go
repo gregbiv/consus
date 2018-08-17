@@ -3,7 +3,7 @@ package storage
 import (
 	"errors"
 
-	"github.com/gregbiv/sandbox/pkg/model"
+	"github.com/gregbiv/consus/pkg/model"
 )
 
 var (

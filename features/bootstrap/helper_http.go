@@ -9,7 +9,7 @@ import (
 	"io/ioutil"
 	"net/http"
 
-	"github.com/gregbiv/sandbox/pkg/api"
+	"github.com/gregbiv/consus/pkg/api"
 	"github.com/onsi/gomega"
 )
 

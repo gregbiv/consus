@@ -3,15 +3,13 @@ services:
   http:
     build:
       context: .
-      args:
-        - GITHUB_TOKEN=${GITHUB_TOKEN}
     volumes:
-      - .:/go/src/github.com/gregbiv/sandbox
+      - .:/go/src/github.com/gregbiv/consus
     environment:
       DEBUG: 'true'
       LOG_LEVEL: 'debug'
       PORT: 8090
-      DATABASE_DSN: 'postgres://pguser:pgpass@postgres/sandbox?sslmode=disable&client_encoding=UTF8'
+      DATABASE_DSN: 'postgres://pguser:pgpass@postgres/consus?sslmode=disable&client_encoding=UTF8'
     depends_on:
       - postgres
     ports:
@@ -26,6 +24,6 @@ services:
     - '8041:5432'
     environment:
       LC_ALL: C.UTF-8
-      POSTGRES_DB: sandbox
+      POSTGRES_DB: consus
       POSTGRES_USER: pguser
       POSTGRES_PASSWORD: pgpass

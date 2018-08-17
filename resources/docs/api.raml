@@ -1,9 +1,70 @@
 #%RAML 1.0
-title: Sandbox
+title: consus
 version: v1
 documentation:
 - title: Introduction
   content: |
-    This is the API documentation for the sandbox application.
+    This is the API documentation for the consus application.
 mediaType: application/json
 baseUri: http://localhost:8090/{version}/
+/keys:
+  /:
+    get:
+      description: Returns all keys available in database
+      queryParameters:
+        filter:
+          description: Filter to apply on results
+          required: false
+          type: string
+      responses:
+        200:
+          body:
+            application/json:
+              example: !include ./schema/response/get_keys.json
+    delete:
+      description: Deletes all keys available in database
+      responses:
+        204:
+    put:
+      body:
+        application/json:
+          example: !include ./schema/request/put_key.json
+      description: Adds a key or updates if a key with the given ID exists
+      queryParameters:
+        expire_in:
+          description: Sets when the key will be expired
+          required: false
+          type: integer
+      responses:
+        201:
+          description: when a new key was created
+        200:
+          description: when an existing key was updated
+    /{id}:
+      get:
+        description: Returns a key by ID
+        responses:
+          200:
+            body:
+              application/json:
+                example: !include ./schema/response/get_key.json
+          404:
+            body:
+              application/json:
+                example: !include ./schema/response/error.json
+      head:
+        description: Checks if a key by ID exists
+        responses:
+          200:
+          404:
+            body:
+              application/json:
+                example: !include ./schema/response/error.json
+      delete:
+        description: Deletes a key by ID
+        responses:
+          204:
+          404:
+            body:
+              application/json:
+                example: !include ./schema/response/error.json

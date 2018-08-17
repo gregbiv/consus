@@ -7,7 +7,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/gregbiv/sandbox/pkg/model"
+	"github.com/gregbiv/consus/pkg/model"
 	"github.com/lib/pq"
 	"github.com/stretchr/testify/assert"
 )

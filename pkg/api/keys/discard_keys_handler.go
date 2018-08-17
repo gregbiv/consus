@@ -4,8 +4,8 @@ import (
 	"net/http"
 
 	"github.com/go-chi/render"
-	"github.com/gregbiv/sandbox/pkg/api"
-	"github.com/gregbiv/sandbox/pkg/storage"
+	"github.com/gregbiv/consus/pkg/api"
+	"github.com/gregbiv/consus/pkg/storage"
 )
 
 type (

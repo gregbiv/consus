@@ -8,7 +8,7 @@ import (
 	"regexp"
 	"time"
 
-	"github.com/gregbiv/sandbox/pkg/model"
+	"github.com/gregbiv/consus/pkg/model"
 	"github.com/lib/pq"
 )
 

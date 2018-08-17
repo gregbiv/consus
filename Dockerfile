@@ -1,6 +1,6 @@
 FROM golang:1.10
 
-ENV APP_DIR $GOPATH/src/github.com/gregbiv/sandbox
+ENV APP_DIR $GOPATH/src/github.com/gregbiv/consus
 
 COPY . ${APP_DIR}
 WORKDIR ${APP_DIR}

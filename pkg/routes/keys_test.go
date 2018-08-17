@@ -4,7 +4,7 @@ import (
 	"testing"
 
 	"github.com/go-chi/chi"
-	"github.com/gregbiv/sandbox/pkg/storage/mock"
+	"github.com/gregbiv/consus/pkg/storage/mock"
 	"github.com/stretchr/testify/assert"
 )
 

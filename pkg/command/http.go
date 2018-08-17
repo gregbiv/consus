@@ -7,9 +7,9 @@ import (
 
 	"github.com/go-chi/chi"
 	chiMiddleware "github.com/go-chi/chi/middleware"
-	"github.com/gregbiv/sandbox/pkg/api"
-	"github.com/gregbiv/sandbox/pkg/api/docs"
-	"github.com/gregbiv/sandbox/pkg/routes"
+	"github.com/gregbiv/consus/pkg/api"
+	"github.com/gregbiv/consus/pkg/api/docs"
+	"github.com/gregbiv/consus/pkg/routes"
 	"github.com/jmoiron/sqlx"
 	"github.com/pressly/lg"
 	"github.com/prometheus/client_golang/prometheus/promhttp"
@@ -51,7 +51,7 @@ func (c *HTTPCommand) Run(args []string) int {
 	// HelloWorld
 	router.Route("/", func(r chi.Router) {
 		r.Get("/", func(writer http.ResponseWriter, request *http.Request) {
-			writer.Write([]byte("Sandbox API"))
+			writer.Write([]byte("consus API"))
 		})
 	})
 
@@ -74,7 +74,7 @@ func (c *HTTPCommand) Run(args []string) int {
 // Help outputs a helper text for the command
 func (*HTTPCommand) Help() string {
 	helpText := `
-Usage: sandbox http [options]
+Usage: consus http [options]
 
   Start the Http Rest API server
 `

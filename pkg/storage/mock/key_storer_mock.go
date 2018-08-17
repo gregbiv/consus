@@ -1,6 +1,6 @@
 package mock
 
-import "github.com/gregbiv/sandbox/pkg/model"
+import "github.com/gregbiv/consus/pkg/model"
 
 // Storer represents a key Storer mock
 type Storer struct {

@@ -6,8 +6,8 @@ import (
 	"testing"
 	"time"
 
-	"github.com/gregbiv/sandbox/pkg/model"
-	dbMock "github.com/gregbiv/sandbox/pkg/storage/mock"
+	"github.com/gregbiv/consus/pkg/model"
+	dbMock "github.com/gregbiv/consus/pkg/storage/mock"
 	"github.com/lib/pq"
 	"github.com/stretchr/testify/assert"
 	"gopkg.in/DATA-DOG/go-sqlmock.v1"

@@ -9,10 +9,10 @@ import (
 	"testing"
 
 	"github.com/go-chi/chi"
-	"github.com/gregbiv/sandbox/pkg/api"
-	"github.com/gregbiv/sandbox/pkg/model"
-	"github.com/gregbiv/sandbox/pkg/storage"
-	"github.com/gregbiv/sandbox/pkg/storage/mock"
+	"github.com/gregbiv/consus/pkg/api"
+	"github.com/gregbiv/consus/pkg/model"
+	"github.com/gregbiv/consus/pkg/storage"
+	"github.com/gregbiv/consus/pkg/storage/mock"
 	"github.com/stretchr/testify/assert"
 )
 

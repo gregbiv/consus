@@ -6,8 +6,8 @@ import (
 	"time"
 
 	"github.com/go-chi/render"
-	"github.com/gregbiv/sandbox/pkg/api"
-	"github.com/gregbiv/sandbox/pkg/storage"
+	"github.com/gregbiv/consus/pkg/api"
+	"github.com/gregbiv/consus/pkg/storage"
 )
 
 type (
@@ -73,6 +73,9 @@ func (h *putKeyHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 			api.RenderInternalServerError(w, r, err)
 			return
 		}
+
+		render.Status(r, http.StatusOK)
+		return
 	} else {
 		dbKey.Value = modelKey.Value
 		dbKey.ExpiresAt = modelKey.ExpiresAt
@@ -83,5 +86,5 @@ func (h *putKeyHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 		}
 	}
 
-	render.Status(r, http.StatusOK)
+	render.Status(r, http.StatusCreated)
 }

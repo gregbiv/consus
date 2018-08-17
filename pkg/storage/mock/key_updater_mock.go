@@ -1,6 +1,6 @@
 package mock
 
-import "github.com/gregbiv/sandbox/pkg/model"
+import "github.com/gregbiv/consus/pkg/model"
 
 // Updater represents a key Updater mock
 type Updater struct {

@@ -7,6 +7,7 @@ import (
 	"github.com/mattes/migrate/database"
 	"github.com/mattes/migrate/source/file"
 	log "github.com/sirupsen/logrus"
+
 	// Enables Postgres for migrations
 	_ "github.com/mattes/migrate/database/postgres"
 	// Enables stub DB for testing
@@ -78,7 +79,7 @@ func (c *MigrateCommand) Run(args []string) int {
 // Help outputs a helper text for the command
 func (*MigrateCommand) Help() string {
 	helpText := `
-Usage: sandbox migrate [options]
+Usage: consus migrate [options]
 
   Migrate database to the given version
 `

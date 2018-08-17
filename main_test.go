@@ -2,8 +2,8 @@ package main
 
 import (
 	"github.com/DATA-DOG/godog"
-	"github.com/gregbiv/sandbox/features/bootstrap"
-	"github.com/gregbiv/sandbox/pkg/config"
+	"github.com/gregbiv/consus/features/bootstrap"
+	"github.com/gregbiv/consus/pkg/config"
 	"github.com/jmoiron/sqlx"
 	log "github.com/sirupsen/logrus"
 )

@@ -6,7 +6,7 @@ import (
 	"io"
 	"strings"
 
-	"github.com/gregbiv/sandbox/pkg/config"
+	"github.com/gregbiv/consus/pkg/config"
 	"github.com/mitchellh/cli"
 	"github.com/mitchellh/colorstring"
 )

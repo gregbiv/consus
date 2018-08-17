@@ -5,7 +5,7 @@
 
 BUILD_DIR ?= build/
 
-NAME=sandbox
+NAME=consus
 REPO=github.com/gregbiv/${NAME}
 
 # Custom local environment file
@@ -17,7 +17,7 @@ endif
 SRC_DIRS=pkg
 GO_PACKAGES := $(shell go list ./pkg...)
 
-BINARY=sandbox
+BINARY=consus
 BINARY_SRC=$(REPO)
 
 GO_LINKER_FLAGS=-ldflags="-s -w"
@@ -55,17 +55,18 @@ usage:
 	@echo "  usage - Shows this dialog."
 	@echo " "
 	@echo " Working with native GO"
-	@echo "  run              - Runs targets to simply make it work"
-	@echo "  deps             - Ensures dependencies using dep and installs several required tools"
-	@echo "  deps-dev         - Install dependencies required only for development"
-	@echo "  build            - Buld the application"
-	@echo "  build-doc        - Build API documentation from RAML files"
-	@echo "  install          - Install app using go install"
-	@echo "  test             - Run all tests"
-	@echo "  test-unit        - Run only unit tests"
-	@echo "  test-integration - Run integration unit tests"
-	@echo "  dev-run-http     - Run REST API"
-	@echo "  dev-migrate      - Run migrations"
+	@echo "  run                - Runs targets to simply make it work"
+	@echo "  deps               - Ensures dependencies using dep and installs several required tools"
+	@echo "  deps-dev           - Install dependencies required only for development"
+	@echo "  build              - Buld the application"
+	@echo "  build-docs         - Build API documentation from RAML files"
+	@echo "  install            - Install app using go install"
+	@echo "  test               - Run all tests"
+	@echo "  test-unit          - Run only unit tests"
+	@echo "  test-unit-coverage - Run unit tests with coverage"
+	@echo "  test-integration   - Run integration unit tests"
+	@echo "  dev-run-http       - Run REST API"
+	@echo "  dev-migrate        - Run migrations"
 	@echo " "
 	@echo " Working with docker containers"
 	@echo "  dev-docker-start              - Start docker containers"
@@ -73,6 +74,7 @@ usage:
 	@echo "  dev-docker-deps               - Install dependencies using docker container"
 	@echo "  dev-docker-migration          - Run migration using docker container"
 	@echo "  dev-docker-test-unit          - Run all unit tests using docker container"
+	@echo "  dev-docker-test-unit-coverage - Run all unit tests with coverage using docker container"
 	@echo "  dev-docker-test-integration   - Run all integration tests using docker container"
 	@echo "  dev-docker-logs [<CONTAINER>] - Print container logs"
 	@echo " "
@@ -190,6 +192,11 @@ dev-docker-test-unit:
 	@printf "$(OK_COLOR)==> Running unit test using docker container$(NO_COLOR)\n"
 	@printf "Don't forget before run unit test to update deps\n"
 	@docker-compose exec ${DOCKER_CONTAINER} make test-unit
+
+dev-docker-test-unit-coverage:
+	@printf "$(OK_COLOR)==> Running unit test with code coverage using docker container$(NO_COLOR)\n"
+	@printf "Don't forget before run unit test to update deps\n"
+	@docker-compose exec ${DOCKER_CONTAINER} make test-unit-coverage
 
 dev-docker-test-integration:
 	@printf "$(OK_COLOR)==> Running integration test using docker container$(NO_COLOR)\n"

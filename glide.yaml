@@ -1,4 +1,4 @@
-package: github.com/gregbiv/sandbox
+package: github.com/gregbiv/consus
 import:
   # Logging
   - package: github.com/sirupsen/logrus

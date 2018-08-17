@@ -6,7 +6,7 @@ import (
 	"net/http/httptest"
 	"testing"
 
-	"github.com/gregbiv/sandbox/pkg/storage/mock"
+	"github.com/gregbiv/consus/pkg/storage/mock"
 	"github.com/stretchr/testify/assert"
 )
 

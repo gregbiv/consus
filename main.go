@@ -3,8 +3,8 @@ package main
 import (
 	"os"
 
-	"github.com/gregbiv/sandbox/pkg/command"
-	"github.com/gregbiv/sandbox/pkg/config"
+	"github.com/gregbiv/consus/pkg/command"
+	"github.com/gregbiv/consus/pkg/config"
 	"github.com/mitchellh/cli"
 	"github.com/prometheus/client_golang/prometheus"
 	"github.com/prometheus/common/version"
@@ -36,9 +36,9 @@ func main() {
 	}
 
 	c := &cli.CLI{
-		Name:     "sandbox",
+		Name:     "consus",
 		Version:  "dev",
-		HelpFunc: cli.BasicHelpFunc("sandbox"),
+		HelpFunc: cli.BasicHelpFunc("consus"),
 		Commands: commands(conf),
 		Args:     os.Args[1:],
 	}

@@ -6,7 +6,7 @@ import (
 	"strings"
 	"time"
 
-	"github.com/gregbiv/sandbox/pkg/model"
+	"github.com/gregbiv/consus/pkg/model"
 	"github.com/jmoiron/sqlx"
 	"github.com/palantir/stacktrace"
 )

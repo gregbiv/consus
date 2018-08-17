@@ -2,8 +2,8 @@ package routes
 
 import (
 	"github.com/go-chi/chi"
-	"github.com/gregbiv/sandbox/pkg/api/keys"
-	"github.com/gregbiv/sandbox/pkg/storage"
+	"github.com/gregbiv/consus/pkg/api/keys"
+	"github.com/gregbiv/consus/pkg/storage"
 	"github.com/jmoiron/sqlx"
 	"github.com/prometheus/client_golang/prometheus"
 )
