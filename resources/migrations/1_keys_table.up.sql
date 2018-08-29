@@ -1,0 +1,10 @@
+
+-- Keys Table
+CREATE TABLE keys (
+    id VARCHAR(50) PRIMARY KEY NOT NULL,
+    value text DEFAULT NULL,
+
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT NULL,
+    expires_at TIMESTAMP DEFAULT NULL
+);

@@ -1,0 +1,29 @@
+version: '2'
+services:
+  http:
+    build:
+      context: .
+    volumes:
+      - .:/go/src/github.com/gregbiv/consus
+    environment:
+      DEBUG: 'true'
+      LOG_LEVEL: 'debug'
+      PORT: 8090
+      DATABASE_DSN: 'postgres://pguser:pgpass@postgres/consus?sslmode=disable&client_encoding=UTF8'
+    depends_on:
+      - postgres
+    ports:
+    - '8090:8090'
+    command: "make dev-run-http"
+
+  # Postgres Database
+  # --------------------------------------------------------------------------------------------------------------------
+  postgres:
+    image: postgres:9.6
+    ports:
+    - '8041:5432'
+    environment:
+      LC_ALL: C.UTF-8
+      POSTGRES_DB: consus
+      POSTGRES_USER: pguser
+      POSTGRES_PASSWORD: pgpass

@@ -1,0 +1,49 @@
+package: github.com/gregbiv/consus
+import:
+  # Logging
+  - package: github.com/sirupsen/logrus
+    version: ^1.0.2
+  # Environment variables
+  - package: github.com/kelseyhightower/envconfig
+    version: ^1.3.0
+  # Http router
+  - package: github.com/go-chi/chi
+    version: ^3.0
+  - package: github.com/go-chi/render
+    version: master
+  # Database abstraction
+  - package: github.com/lib/pq
+    version: master
+  - package: github.com/jmoiron/sqlx
+    version: master
+  # Database migration
+  - package: github.com/mattes/migrate
+    version: ^3.0.0
+    subpackages:
+    - database/postgres
+    - source/go-bindata
+  # Errors
+  - package: github.com/palantir/stacktrace
+    version: master
+  # Testing
+  - package: github.com/DATA-DOG/godog
+    version: ^0.7.3
+    subpackages:
+    - cmd/godog
+  - package: github.com/onsi/gomega
+    version: ^1.2.0
+  - package: gopkg.in/DATA-DOG/go-sqlmock.v1
+    version: ^1.2.0
+  - package: github.com/stretchr/testify
+    version: ^1.2.0
+    subpackages:
+    - assert
+  # Factories
+  - package: github.com/bluele/factory-go
+    version: master
+  # Prometheus
+  - package: github.com/prometheus/client_golang
+    version: ~0.8.0
+    subpackages:
+    - prometheus
+    - prometheus/promhttp

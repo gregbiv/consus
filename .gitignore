@@ -1,0 +1,8 @@
+vendor/
+build/
+.glide/
+cmd/debug
+pkg/*/debug.test
+resources/docs/*.html
+*.coverprofile
+coverage.txt
