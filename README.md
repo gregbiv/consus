@@ -1,4 +1,4 @@
-`Consus` - service manages a key-value storage.
+`Consus` - an experiment service manages a key-value storage.
 
 _In ancient Roman religion, the god Consus was the protector of grains. He was represented by a grain seed_
 

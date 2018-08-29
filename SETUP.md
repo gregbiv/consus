@@ -1,5 +1,3 @@
-# Guten Tag, Native Instruments!
-
 Consus - the key-value service.
 
 ## Setup instructions
